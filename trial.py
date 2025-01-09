@@ -25,16 +25,16 @@ def set_zeroes(matrix):
     return matrix
 
 # Input handling
-m = int(input("Enter m: "))
-n = int(input("Enter n: "))
+M = int(input("Enter m: "))
+N = int(input("Enter n: "))
 matrixinp = []
 
-for _ in range(m):
-    row = list(map(int, input().split()))
-    matrixinp.append(row)
+for _ in range(M):
+    R = list(map(int, input().split()))
+    matrixinp.append(R)
 
 # Process and output result
 matrixnew = set_zeroes(matrixinp)
 
-for row in matrixnew:
-    print(" ".join(map(str, row)))
+for R in matrixnew:
+    print(" ".join(map(str, R)))
