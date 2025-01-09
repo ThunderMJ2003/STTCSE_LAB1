@@ -1,54 +1,40 @@
 """module for STTCSE LAB 1"""
 
 def set_zeroes(matrix):
-    """funtion to set the rows and columns zero if the matrix has zero there"""
-    foundzero = 0
-    zi=-1
-    zj=-1
-    for i, mi in enumerate(matrix):
-        for j, mj in enumerate(mi):
-            if mj == 0:
-                foundzero = 1
-                zi = i
-                zj = j
-                break
-        if foundzero:
-            break
-    if foundzero == 0:
-        return matrix
-    for i, mi in enumerate(matrix):
-        for j, mj in enumerate(mi):
-            if mj == 0:
-                matrix[i][zj] = 0
-                matrix[zi][j] = 0
-    for i, mi in enumerate(matrix):
-        if ((mi[zj] == 0) and (i != zi)):
-            for j, mj in enumerate(mi):
-                mj = 0
-    for i, mi in enumerate(matrix[0]):
-        if ((matrix[zi][i] == 0) and (i != zj)):
-            for j, mj in enumerate(matrix):
-                matrix[j][i] = 0
-    for i, mi in enumerate(matrix):
-        mi[zj] = 0
-    for i, mi in enumerate(matrix[0]):
-        matrix[zi][i] = 0
+    """Function to set the rows and columns to zero if the matrix has a zero."""
+    m, n = len(matrix), len(matrix[0]) if matrix else 0
+    zero_rows, zero_cols = set(), set()
+
+    # Step 1: Identify all rows and columns that need to be set to zero
+    for i in range(m):
+        for j in range(n):
+            if matrix[i][j] == 0:
+                zero_rows.add(i)
+                zero_cols.add(j)
+
+    # Step 2: Set rows to zero
+    for row in zero_rows:
+        for j in range(n):
+            matrix[row][j] = 0
+
+    # Step 3: Set columns to zero
+    for col in zero_cols:
+        for i in range(m):
+            matrix[i][col] = 0
+
     return matrix
 
-m = int(input("enter m: "))
-n = int(input("enter n: "))
+# Input handling
+m = int(input("Enter m: "))
+n = int(input("Enter n: "))
 matrixinp = []
-for a in range(m):
-    t = []
-    for b in range(n):
-        x = int(input())
-        t.append(x)
-    matrixinp.append(t)
 
+for _ in range(m):
+    row = list(map(int, input().split()))
+    matrixinp.append(row)
+
+# Process and output result
 matrixnew = set_zeroes(matrixinp)
 
-for a in range(m):
-    S = ""
-    for b in range(n):
-        S = S + str(matrixnew[a][b]) + " "
-    print(S)
+for row in matrixnew:
+    print(" ".join(map(str, row)))
