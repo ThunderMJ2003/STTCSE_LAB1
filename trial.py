@@ -48,7 +48,7 @@ for a in range(m):
 matrixnew = set_zeroes(matrixinp)
 
 for a in range(m):
-    st = ""
+    S = ""
     for b in range(n):
-        st = st + str(matrixnew[a][b]) + " "
-    print(st)
+        S = S + str(matrixnew[a][b]) + " "
+    print(S)
